@@ -16,11 +16,10 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
             $table->string('title');
-            $table->string('slug');
             $table->longText('content');
             $table->string('status')->default(PostStatus::Draft->value);
             $table->string('source');
-            $table->string('external_id');
+            $table->string('external_id')->nullable();
             $table->timestamps();
         });
     }
