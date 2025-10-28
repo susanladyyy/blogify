@@ -92,11 +92,14 @@ php artisan serve
 3. Commit with meaningful messages
 4. Submit your repository URL for us to review
 5. Include in your submission:
-    - Total time spent
-    - Explain your approach
-    - Explain how you would add a new API Source
-    - Propose improvement to your own code
+    - Total time spent: 3 hours and 50 minutes
+    - Explain your approach: firstly i created all the necessary models, then i go over to the controller and i finished the features for admin first, then i continued the features for image imports
+    - Explain how you would add a new API Source:
+Modify the handle method in ImportPostCommand (the console command created)
+I'd write the specific code to call the new API's URL and manually "transform" its unique data, (for example, mapping post.body to my content field).
 
+    - Propose improvement to your own code: 
+The weakness of the current ImportPostCommand is that it's doing too much. It knows the specific URLs and data structures for every API, which is hard to maintain. I would propose a better approach is to refactor this using the Strategy Pattern, creating separate "Importer" classes for each API where each class has one job that is to import from its source. Then, the main command's only responsibility is to randomly pick one of these importer classes to run. This will be more scalable if there is a new API to be added as the importer.
 ---
 
 ## **Evaluation Focus**
